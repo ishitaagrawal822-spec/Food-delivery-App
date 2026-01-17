@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FoodieX App UI</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+
+body{
+ background:#121212;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ height:100vh;
+ font-family:'Segoe UI',sans-serif;
+ color:white;
+}
+
+.phone{
+ width:360px;
+ height:720px;
+ background:#1c1c1c;
+ border-radius:35px;
+ overflow:hidden;
+ box-shadow:0 0 40px rgba(255,100,50,.5);
+}
+
+.screen{padding:20px;display:none;}
+.active{display:block;}
+
+.btn{
+ background:linear-gradient(45deg,#ff512f,#dd2476);
+ border:none;
+ padding:12px;
+ width:100%;
+ color:white;
+ border-radius:20px;
+ cursor:pointer;
+ margin-top:15px;
+}
+
+input{
+ width:100%;
+ padding:10px;
+ margin:8px 0;
+ border:none;
+ border-radius:10px;
+}
+
+.card{
+ background:#2a2a2a;
+ padding:12px;
+ border-radius:15px;
+ margin-bottom:10px;
+ animation:fade .5s;
+}
+
+@keyframes fade{
+ from{opacity:0;transform:translateY(20px);}
+ to{opacity:1;transform:translateY(0);}
+}
+
+.nav{
+ position:absolute;
+ bottom:0;
+ width:100%;
+ background:#000;
+ display:flex;
+ justify-content:space-around;
+ padding:10px 0;
+}
+
+.nav i{cursor:pointer;}
+</style>
+</head>
+
+<body>
+
+<div class="phone">
+
+<!-- LOGIN SCREEN -->
+<div class="screen active" id="login">
+<h2>🍕 FoodieX</h2>
+<p>Login to continue</p>
+<input placeholder="Email">
+<input type="password" placeholder="Password">
+<button class="btn" onclick="go('list')">Login</button>
+</div>
+
+<!-- RESTAURANT LIST -->
+<div class="screen" id="list">
+<h3>Nearby Restaurants</h3>
+<div class="card" onclick="go('food')">🔥 Burger King</div>
+<div class="card" onclick="go('food')">🍜 Noodle House</div>
+<div class="card" onclick="go('food')">🍕 Pizza Hub</div>
+</div>
+
+<!-- FOOD PAGE -->
+<div class="screen" id="food">
+<h3>Menu - Burger King</h3>
+<div class="card">🍔 Cheese Burger - ₹150</div>
+<div class="card">🍟 Fries - ₹80</div>
+<div class="card">🥤 Cold Drink - ₹60</div>
+<button class="btn" onclick="go('cart')">Add to Cart</button>
+</div>
+
+<!-- CART PAGE -->
+<div class="screen" id="cart">
+<h3>Your Cart</h3>
+<div class="card">🍔 Cheese Burger - ₹150</div>
+<div class="card">🍟 Fries - ₹80</div>
+<h4>Total: ₹230</h4>
+<button class="btn">Checkout</button>
+</div>
+
+<div class="nav">
+<i class="fa fa-home" onclick="go('list')"></i>
+<i class="fa fa-cart-shopping" onclick="go('cart')"></i>
+<i class="fa fa-user" onclick="go('login')"></i>
+</div>
+
+</div>
+
+<script>
+function go(id){
+ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+}
+</script>
+
+</body>
+</html>
